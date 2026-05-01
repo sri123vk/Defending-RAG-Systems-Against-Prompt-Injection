@@ -1,6 +1,6 @@
 # Defending RAG Systems Against Indirect Prompt Injection
 
-> **CS 774 Research Project** | Rakshith Sriraman Krishnaraj & Srimathi Ravisankar | April 2026
+> **CS 763 Research Project** | April 2026
 
 ---
 
