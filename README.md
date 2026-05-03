@@ -23,8 +23,6 @@ In a typical RAG pipeline, retrieved documents are concatenated with the user qu
 | Combined Defense | **0.0%** | 100% | **0.0%** |
 | Adaptive Attack vs Delimiting | **0.0%** | 100% | — |
 
-> **Recommendation:** Use **Prompt Delimiting** as the primary defense. It achieves 0% ASR, 100% BU, and 0% leakage rate — with zero infrastructure cost and no model training required.
-
 ---
 
 ## Tech Stack
@@ -135,9 +133,6 @@ python vary_topk.py               # ~2 min
 python adaptive_attack.py         # ~7 min (rate limit delays)
 python defense_leakage.py         # ~9 min (rate limit delays)
 ```
-
-> **Note:** Scripts that make many API calls include a 13-second delay between requests to stay within the 5 requests/minute rate limit. Total runtime for all experiments is approximately 30 minutes.
-
 ---
 
 ## Attack Taxonomy
