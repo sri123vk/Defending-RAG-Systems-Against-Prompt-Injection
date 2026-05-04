@@ -301,7 +301,7 @@ def evaluate_attacks(collection):
             attack_total += 1
             if followed_attack:
                 attack_success += 1
-                status = "ATTACKED ❌"
+                status = "ATTACKED"
             else:
                 status = "SAFE ✓"
         else:
@@ -310,7 +310,7 @@ def evaluate_attacks(collection):
                 clean_correct += 1
                 status = "CORRECT ✓"
             else:
-                status = "WRONG ❌"
+                status = "WRONG"
 
         results.append({
             "query": query,
