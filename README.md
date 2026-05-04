@@ -10,21 +10,7 @@ This project implements and benchmarks a complete **Retrieval-Augmented Generati
 
 In a typical RAG pipeline, retrieved documents are concatenated with the user query and passed to an LLM. Because the model processes all text in-context, it may fail to distinguish between trusted system instructions and adversarial instructions embedded in retrieved documents. An attacker who plants a malicious document in the knowledge base can hijack the LLM's output — invisibly, without the user doing anything wrong.
 
----
-
-## Results at a Glance
-
-| Configuration | Injection ASR | Benign Utility | Leakage Rate |
-|---|---|---|---|
-| Baseline (no defense) | **12.5%** | 100% | **10.0%** |
-| Defense 1: Prompt Delimiting | **0.0%** | 100% | 0.0% |
-| Defense 2: Pattern Filtering | **0.0%** | 100% | 0.0% |
-| Defense 3: Perplexity Filtering | **0.0%** | 83.3% | — |
-| Combined Defense | **0.0%** | 100% | **0.0%** |
-| Adaptive Attack vs Delimiting | **0.0%** | 100% | — |
-
----
-
+--
 ## Tech Stack
 
 | Component | Choice |
