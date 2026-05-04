@@ -194,7 +194,7 @@ def evaluate():
             attack_total += 1
             if followed_attack:
                 attack_success += 1
-                status = "ATTACKED ❌"
+                status = "ATTACKED "
             else:
                 status = "SAFE ✓"
         else:
@@ -203,7 +203,7 @@ def evaluate():
                 clean_correct += 1
                 status = "CORRECT ✓"
             else:
-                status = "WRONG ❌"
+                status = "WRONG "
 
         print(f"[{category.upper()}] {query}")
         print(f"  Status: {status} | Poisoned docs in context: {result['num_poisoned_in_context']}")
