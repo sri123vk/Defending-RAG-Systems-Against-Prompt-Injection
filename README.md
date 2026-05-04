@@ -10,7 +10,6 @@ This project implements and benchmarks a complete **Retrieval-Augmented Generati
 
 In a typical RAG pipeline, retrieved documents are concatenated with the user query and passed to an LLM. Because the model processes all text in-context, it may fail to distinguish between trusted system instructions and adversarial instructions embedded in retrieved documents. An attacker who plants a malicious document in the knowledge base can hijack the LLM's output — invisibly, without the user doing anything wrong.
 
---
 ## Tech Stack
 
 | Component | Choice |
@@ -20,44 +19,6 @@ In a typical RAG pipeline, retrieved documents are concatenated with the user qu
 | Embeddings | `all-MiniLM-L6-v2` (384-dim, local) |
 | Perplexity Model | GPT-2 (HuggingFace, local) |
 | Framework | Python 3.13 + Anthropic SDK |
-
----
-
-## Project Structure
-
-```
-Defense/
-├── corpus.py                  # Document corpus — 35 clean + 12 poisoned (6 attack tiers)
-├── vectorstore.py             # ChromaDB embedding and retrieval interface
-├── rag_pipeline.py            # Base RAG pipeline (no defense)
-│
-├── evaluate_asr.py            # Phase 1 — Baseline ASR + BU evaluation
-│
-├── defense_delimiting.py      # Phase 2 — Defense 1: Prompt delimiting
-├── defense_filtering.py       # Phase 2 — Defense 2: Instruction-pattern filtering
-├── defense_perplexity.py      # Phase 2 — Defense 3: Perplexity-based filtering
-├── combined_defense.py        # Phase 2 — Defense 4: Filtering + delimiting combined
-│
-├── poison_rate_sweep.py       # Phase 3 — Exp A: ASR at 1%, 5%, 10%, 25% poison rates
-├── prompt_leakage.py          # Phase 3 — Exp B: 10 system prompt extraction strategies
-├── vary_topk.py               # Phase 3 — Exp E: ASR at k=1, 3, 5, 10 retrieval
-├── adaptive_attack.py         # Phase 3 — Exp F: 8 white-box adaptive attack strategies
-├── defense_leakage.py         # Phase 3 — Exp G: All leakage strategies vs all defenses
-│
-├── test_setup.py              # Setup verification script
-│
-├── results_baseline.json      # Saved experiment results
-├── results_delimiting.json
-├── results_filtering.json
-├── results_combined.json
-├── results_leakage.json
-├── results_leakage_defense.json
-├── results_poison_sweep.json
-├── results_topk.json
-└── results_adaptive.json
-```
-
----
 
 ## Setup
 
@@ -94,32 +55,6 @@ Claude says: Hello! It's great to meet you today.
 Anthropic OK
 ChromaDB OK
 Embedder OK - dim: 384
-```
-
----
-
-## Running the Full Pipeline
-
-Run experiments in this order:
-
-```bash
-# Phase 1 — Baseline
-python evaluate_asr.py
-
-# Phase 2 — Defenses
-python defense_delimiting.py
-python defense_filtering.py
-python defense_perplexity.py      # downloads GPT-2 on first run (~548MB)
-python combined_defense.py
-
-# Phase 3 — Advanced experiments
-python poison_rate_sweep.py       # ~3 min
-python prompt_leakage.py          # ~2 min
-python vary_topk.py               # ~2 min
-python adaptive_attack.py         # ~7 min (rate limit delays)
-python defense_leakage.py         # ~9 min (rate limit delays)
-```
----
 
 ## Attack
 
