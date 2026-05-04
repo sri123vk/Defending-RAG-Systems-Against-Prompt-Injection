@@ -265,7 +265,7 @@ def evaluate():
     print()
     print("Strategy Breakdown:")
     for r in results:
-        status = "LEAKED ❌" if r["did_leak"] else "safe   ✓"
+        status = "LEAKED " if r["did_leak"] else "safe   ✓"
         retrieved = "retrieved" if r["leakage_doc_retrieved"] else "NOT retrieved"
         print(f"  [{status}] {r['strategy']:<30} ({retrieved})")
 
