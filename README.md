@@ -56,7 +56,7 @@ Anthropic OK
 ChromaDB OK
 Embedder OK - dim: 384
 
-## Attack
+### 4. Attack
 
 We assume an adversary can insert malicious documents into the retrieval corpus.
 
