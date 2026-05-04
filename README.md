@@ -57,25 +57,10 @@ ChromaDB OK
 Embedder OK - dim: 384
 
 ```
-### 4. Attack
 
-We assume an adversary can insert malicious documents into the retrieval corpus.
+## 4. Attacks
 
-These documents may:
-- Contain explicit instructions (e.g., “ignore previous instructions”)  
-- Use embedding-space manipulation to ensure retrieval  
-- Activate only for specific queries (targeted attacks)  
-- Embed malicious intent in natural-looking text  
-- Include trigger-based or temporal conditions  
-
-The adversary’s goal is to:
-- Manipulate model outputs  
-- Leak hidden/system prompts  
-- Degrade answer quality  
-
-## 5. Attacks
-
-### 5.1 Embedding-Oriented Poisoning
+### 4.1 Embedding-Oriented Poisoning
 
 - Manipulates embeddings to ensure retrieval  
 - Contains hidden instruction payload using a canary string  
@@ -86,7 +71,7 @@ Result:
 
 ---
 
-### 5.2 Backdoor Trigger Attack
+### 4.2 Backdoor Trigger Attack
 
 - Malicious behavior activates only when a trigger token appears  
 
@@ -97,7 +82,7 @@ Result:
 
 ---
 
-### 5.3 Jailbreak via RAG Context
+### 4.3 Jailbreak via RAG Context
 
 - Injects instructions through retrieved documents  
 
@@ -107,7 +92,7 @@ Result:
 
 ---
 
-### 5.4 Prompt Leakage Attack
+### 4.4 Prompt Leakage Attack
 
 - Attempts to extract system prompt  
 
@@ -117,7 +102,7 @@ Observation:
 
 ---
 
-### 5.5 Temporal Poisoning
+### 4.5 Temporal Poisoning
 
 - Activates malicious behavior after a specific date  
 
@@ -127,9 +112,9 @@ Result:
 
 ---
 
-## 6. Defense Mechanisms
+## 5. Defense Mechanisms
 
-### 6.1 Pattern-Based Filtering
+### 5.1 Pattern-Based Filtering
 
 Removes documents containing known malicious phrases.
 
@@ -143,7 +128,7 @@ Limitations:
 
 ---
 
-### 6.2 Perplexity-Based Filtering
+### 5.2 Perplexity-Based Filtering
 
 Uses GPT-2 to measure how “natural” a document is.
 
@@ -168,7 +153,7 @@ Limitations:
 
 ---
 
-### 6.3 Prompt Delimiting
+### 5.3 Prompt Delimiting
 
 Wraps documents as structured data:
 
